@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CrowdPocket</title>
+	<script src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://glosscss.com/gloss/matte.css">
+</head>
+<body>
+	<form name="userSignUp" onsubmit="addUser()">
+		<input name="username" required></input>
+		<input type="password" name="password" required></input>
+		<input name="token" required></input>
+		<input type="submit"></input>
+	</form>
+	
+<script>
+	document.forms["userSignUp"].addEventListener("submit", function(event){
+	    event.preventDefault()
+	});
+	
+	Parse.initialize("JrsbgQcJqZHkX4EUTsYPRTTJ93Fv7Y903JN5Mq2J", "m65vVaZ70YJ4LoYsOf02zsOfp2xZ4QvvoiAWxgma");
+	
+	function addUser() {	
+		var user = new Parse.User();
+		var username = document.forms["userSignUp"]["username"].value;
+		var password = document.forms["userSignUp"]["password"].value;
+		var token = document.forms["userSignUp"]["token"].value;
+		user.set("username", username);
+		user.set("password", password);
+		user.set("parseToken", token);
+		user.signUp(null, {
+		  success: function(user) {
+			  document.forms["userSignUp"].submit();
+			  window.location.assign("http://crowdpocket.co/crowds");
+		    // Hooray! Let them use the app now.
+		  },
+		  error: function(user, error) {
+		    // Show the error message somewhere and let the user try again.
+		    alert("Error: " + error.code + " " + error.message);
+		  }
+		});
+	};
+</script>
+</body>
+</html>

@@ -14,6 +14,7 @@
 	
 	var currentUser = Parse.User.current();
 	if(!currentUser) {
+		alert("You must log in to view this page. Please log in or sign up.");
 		window.location.href = "../";
 	}
 	

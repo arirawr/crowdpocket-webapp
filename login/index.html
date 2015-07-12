@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CrowdPocket</title>
+	<script src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://glosscss.com/gloss/matte.css">
+</head>
+<body>
+	<form name="login" onsubmit="logInUser()">
+		<input name="username" required></input>
+		<input type="password" name="password" required></input>
+		<input type="submit"></input>
+	</form>
+	
+<script>
+	document.forms["login"].addEventListener("submit", function(event){
+	    event.preventDefault()
+	});
+	
+	Parse.initialize("JrsbgQcJqZHkX4EUTsYPRTTJ93Fv7Y903JN5Mq2J", "m65vVaZ70YJ4LoYsOf02zsOfp2xZ4QvvoiAWxgma");
+	
+	function logInUser() {	
+		var user = new Parse.User();
+		var username = document.forms["login"]["username"].value;
+		var password = document.forms["login"]["password"].value;
+		Parse.User.logIn(username, password, {
+            success: function(user) {
+				alert("Success");
+				document.forms["login"].submit();
+                window.location.href = "../crowds";
+                return true;
+                },
+            error: function(user, error) {
+                alert("Error: " + error.code + " " + error.message + username + password);
+                return false;
+                }
+        });
+	};
+</script>
+</body>
+</html>

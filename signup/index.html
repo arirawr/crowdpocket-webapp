@@ -15,7 +15,7 @@
 	
 <script>
 	document.forms["userSignUp"].addEventListener("submit", function(event){
-	    event.preventDefault()
+	    event.preventDefault();
 	});
 	
 	Parse.initialize("JrsbgQcJqZHkX4EUTsYPRTTJ93Fv7Y903JN5Mq2J", "m65vVaZ70YJ4LoYsOf02zsOfp2xZ4QvvoiAWxgma");
@@ -31,7 +31,7 @@
 		user.signUp(null, {
 		  success: function(user) {
 			  document.forms["userSignUp"].submit();
-			  window.location.assign("http://crowdpocket.co/crowds");
+			  window.location.href = "../crowds";
 		    // Hooray! Let them use the app now.
 		  },
 		  error: function(user, error) {

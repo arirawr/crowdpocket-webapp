@@ -26,7 +26,6 @@
 		var password = document.forms["login"]["password"].value;
 		Parse.User.logIn(username, password, {
             success: function(user) {
-				alert("Success");
 				document.forms["login"].submit();
                 window.location.href = "../crowds";
                 return true;

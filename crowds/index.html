@@ -12,9 +12,12 @@
 <script>
 	Parse.initialize("JrsbgQcJqZHkX4EUTsYPRTTJ93Fv7Y903JN5Mq2J", "m65vVaZ70YJ4LoYsOf02zsOfp2xZ4QvvoiAWxgma");
 	
-	var username = Parse.User.current().getUsername();
+	var currentUser = Parse.User.current();
+	if(!currentUser) {
+		window.location.href = "../";
+	}
 	
-	document.getElementById("username").innerHTML = username;
+	document.getElementById("username").innerHTML = currentUser.getUsername();
 	
 	function addUser() {	
 		var user = new Parse.User();
